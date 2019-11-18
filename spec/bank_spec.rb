@@ -16,9 +16,9 @@ describe Bank do
     # end
   end
 
-  describe '#date_display' do
-    it 'displays a given date in the correct format' do
-      expect(subject.date_format("10-01-2012")).to eq "10/01/2012"
+  describe '#add_date' do
+    it 'returns a given date in the correct format' do
+      expect(subject.add_date("10-01-2012")).to eq "10/01/2012"
     end
   end
 
@@ -40,6 +40,14 @@ describe Bank do
       subject.deposit(2000)
       subject.withdraw(500)
       expect(subject.balance).to eq 2500
+    end
+  end
+
+  describe '#print_entry' do
+    it 'displays an entry in the correct format' do
+      subject.deposit(1000)
+      subject.add_date("10-01-2012")
+      expect(subject.print_entry).to eq "10/01/2012 || 1000.00 || || 1000.00"
     end
   end
 end

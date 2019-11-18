@@ -45,3 +45,8 @@ deposit(1000) => 1000
 deposit(1000), deposit(2000) => 3000
 
 deposit(1000), deposit(2000), withdraw(500) => 2500
+
+PRINT_ENTRY
+deposit(1000), add_date("10-01-2012") => 10/01/2012 || 1000.00 || || 1000.00
+
+deposit(2000), add_date("10-01-2012") => 13/01/2012 || 2000.00 || || 3000.00
