@@ -29,9 +29,8 @@ class Bank
     @balance -= amount
   end
 
-  def print_entry
-    # @current_date + "||" + @deposit.to_s + "||" + "||" + @balance.to_s
-    "10/01/2012 || 1000.00 || || 1000.00"
+  def print_last_entry
+    @last_date + " || " + money_format(@last_deposit) + " || " + "|| " + money_format(@balance)
   end
 
 end
