@@ -10,6 +10,7 @@ describe '#deposit_display' do
 
   it 'throws an if given amount is an invalid amount' do
     expect(deposit_display(-2000)).to eq "Error: invalid amount"
+    expect(deposit_display(-50)).to eq "Error: invalid amount"
   end
 
   # it 'throws an error if given amount is in an incorrect format' do
