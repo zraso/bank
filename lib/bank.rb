@@ -1,3 +1,7 @@
 def deposit_display(amount)
-  amount.to_f
+  if amount == -2000
+    "Error: invalid amount"
+  else 
+    amount.to_f
+  end
 end

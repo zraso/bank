@@ -29,7 +29,7 @@ DEPOSIT DISPLAY
 1000 => 1000.00
 2000 => 2000.00
 -2000 => ERROR: invalid amount (edge)
--2OOO => ERROR: invalid characters (edge)
+2ooo => ERROR: invalid characters (edge)
 
 DATE DISPLAY
 10-01-2012 => 10/01/2012
