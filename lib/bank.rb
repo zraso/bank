@@ -7,9 +7,5 @@ def deposit_display(amount)
 end
 
 def date_display(date)
-  if date == "10-01-2012"
-    "10/01/2012"
-  else
-    "13/01/2012"
-  end
+  date.split("-").join("/")
 end
