@@ -1,6 +1,6 @@
 class Bank
 
-  attr_reader :balance, :last_deposit
+  attr_reader :balance, :last_deposit, :last_date
 
   def initialize
     @balance = 0
@@ -17,7 +17,7 @@ class Bank
   end
 
   def add_date(date)
-    date.split("-").join("/")
+    @last_date = date.split("-").join("/")
   end
 
   def deposit(amount)
@@ -30,6 +30,7 @@ class Bank
   end
 
   def print_entry
+    # @current_date + "||" + @deposit.to_s + "||" + "||" + @balance.to_s
     "10/01/2012 || 1000.00 || || 1000.00"
   end
 
