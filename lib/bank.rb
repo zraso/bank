@@ -1,11 +1,18 @@
-def deposit_display(amount)
-  if amount < 0
-    "Error: invalid amount"
-  else 
-    sprintf("%.2f", amount)
+class Bank
+  def money_format(amount)
+    if amount < 0
+      "Error: invalid amount"
+    else 
+      sprintf("%.2f", amount)
+    end
   end
-end
 
-def date_display(date)
-  date.split("-").join("/")
+  def date_format(date)
+    date.split("-").join("/")
+  end
+
+  def deposit(amount)
+    amount
+  end
+
 end

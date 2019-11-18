@@ -26,9 +26,10 @@ date || credit || debit || balance
 500, 14-01-2012 => 14/01/2012 || || 500.00 || 2500.00
 
 DEPOSIT DISPLAY
-1000 => 1000.00
-2000 => 2000.00
--2000 => ERROR: invalid amount (edge)
+1000 => 1000.00 *
+2000 => 2000.00 *
+-2000 => ERROR: invalid amount (edge) *
+"2000" => ERROR: incorrect format (edge)
 
 DATE DISPLAY
 10-01-2012 => 10/01/2012
@@ -36,4 +37,11 @@ DATE DISPLAY
 13/01/2012 => ERROR: wrong format (edge)
 31/02/2012 => ERROR: date does not exist (edge)
 
+##Eventually, could have a display method that can be used for both i.e. polymorphism
+
 BALANCE
+deposit(1000) => 1000
+
+deposit(1000), deposit(2000) => 3000
+
+deposit(1000), deposit(2000), withdraw(500) => 2500
