@@ -43,11 +43,25 @@ describe Bank do
     end
   end
 
+  describe '#current_deposit' do
+    it 'returns last deposit made' do
+      subject.deposit(1000)
+      subject.deposit(2000)
+      expect(subject.last_deposit).to eq 2000
+    end
+  end
+
   describe '#print_entry' do
     it 'displays an entry in the correct format' do
       subject.deposit(1000)
       subject.add_date("10-01-2012")
       expect(subject.print_entry).to eq "10/01/2012 || 1000.00 || || 1000.00"
     end
+
+    # it 'displays an entry in the correct format' do
+    #   subject.deposit(2000)
+    #   subject.add_date("13-01-2012")
+    #   expect(subject.print_entry).to eq "13/01/2012 || 2000.00 || || 1000.00"
+    # end
   end
 end

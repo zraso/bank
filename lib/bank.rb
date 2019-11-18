@@ -1,9 +1,11 @@
 class Bank
 
-  attr_reader :balance
+  attr_reader :balance, :last_deposit
 
   def initialize
     @balance = 0
+    @last_deposit = 0
+    @last_date = nil
   end
 
   def money_format(amount)
@@ -20,6 +22,7 @@ class Bank
 
   def deposit(amount)
     @balance += amount
+    @last_deposit = amount
   end
 
   def withdraw(amount)
