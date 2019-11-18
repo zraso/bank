@@ -34,14 +34,12 @@ describe Bank do
     end
   end
 
-  # describe '#balance' do
-
-
-  #   # it 'when there is an amount and a withdrawal, it returns the difference of the amounts' do
-  #   #   subject.deposit(1000)
-  #   #   subject.deposit(2000)
-  #   #   subject.withdraw(500)
-  #   #   expect(subject.balance).to eq 2500
-  #   # end
-  # end
+  describe '#withdraw' do
+    it 'when there is an amount and a withdrawal, it returns the difference of the amounts' do
+      subject.deposit(1000)
+      subject.deposit(2000)
+      subject.withdraw(500)
+      expect(subject.balance).to eq 2500
+    end
+  end
 end
