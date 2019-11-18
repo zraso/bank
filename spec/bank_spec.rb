@@ -13,7 +13,15 @@ describe '#deposit_display' do
     expect(deposit_display(-50)).to eq "Error: invalid amount"
   end
 
-  # it 'throws an error if given amount is in an incorrect format' do
-  #   expect(deposit_display("2000")).to eq "Error: invalid format"
+  # it 'throws an if given amount is incorrect format' do
+  #   expect(deposit_display("2000")).to eq "Error: incorrect format"
   # end
+end
+
+describe '#date_display' do
+  it 'displays a given date in the correct format' do
+    expect(date_display("10-01-2012")).to eq "10/01/2012"
+    expect(date_display("13-01-2012")).to eq "13/01/2012"
+    # expect(date_display("31-02-2012")).to eq "31/02/2012"
   end
+end
