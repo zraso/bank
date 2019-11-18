@@ -76,11 +76,31 @@ describe Bank do
     end
   end
 
+  describe '#confirm' do
+    it 'saves the deposit and date as an entry' do
+      subject.deposit(2000)
+      subject.add_date("13-01-2012")
+      subject.confirm
+      expect(subject.entries).to eq ["13/01/2012 || 2000.00 || || 2000.00"]
+    end
+  end
+
   describe '#print_statement' do
     it 'when one deposit, prints date, amount and balance with header' do
       subject.deposit(1000)
       subject.add_date("13-01-2012")
+      subject.confirm
       expect{subject.print_statement}.to output("date || credit || debit || balance\n13/01/2012 || 1000.00 || || 1000.00\n").to_stdout
+    end
+
+    it 'when two deposits, prints statement date, amount and balance' do
+      subject.deposit(1000)
+      subject.add_date("10-01-2012")
+      subject.confirm
+      subject.deposit(2000)
+      subject.add_date("13-01-2012")
+      subject.confirm
+      expect{subject.print_statement}.to output("date || credit || debit || balance\n13/01/2012 || 2000.00 || || 3000.00\n10/01/2012 || 1000.00 || || 1000.00\n").to_stdout
     end
   end
 end
