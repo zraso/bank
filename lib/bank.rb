@@ -15,4 +15,8 @@ class Bank
     amount
   end
 
+  def balance
+    1000
+  end
+
 end
