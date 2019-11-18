@@ -29,8 +29,19 @@ class Bank
     @balance -= amount
   end
 
-  def print_last_entry
+  def display_entry
     @last_date + " || " + money_format(@last_deposit) + " || " + "|| " + money_format(@balance)
+  end
+
+  def print_statement
+    print header
+    puts display_entry
+  end
+
+  private
+
+  def header
+    puts "date || credit || debit || balance"
   end
 
 end

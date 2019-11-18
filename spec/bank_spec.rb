@@ -62,17 +62,25 @@ describe Bank do
   end
   
 
-  describe '#print_entry' do
+  describe '#print_last_entry' do
     it 'displays an entry in the correct format' do
       subject.deposit(1000)
       subject.add_date("10-01-2012")
-      expect(subject.print_last_entry).to eq "10/01/2012 || 1000.00 || || 1000.00"
+      expect(subject.display_entry).to eq "10/01/2012 || 1000.00 || || 1000.00"
     end
 
     it 'displays an entry in the correct format' do
       subject.deposit(2000)
       subject.add_date("13-01-2012")
-      expect(subject.print_last_entry).to eq "13/01/2012 || 2000.00 || || 2000.00"
+      expect(subject.display_entry).to eq "13/01/2012 || 2000.00 || || 2000.00"
+    end
+  end
+
+  describe '#print_statement' do
+    it 'when one deposit, prints date, amount and balance with header' do
+      subject.deposit(1000)
+      subject.add_date("13-01-2012")
+      expect{subject.print_statement}.to output("date || credit || debit || balance\n13/01/2012 || 1000.00 || || 1000.00\n").to_stdout
     end
   end
 end
