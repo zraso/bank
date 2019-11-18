@@ -1,4 +1,11 @@
 class Bank
+
+  attr_reader :balance
+
+  def initialize
+    @balance = 0
+  end
+
   def money_format(amount)
     if amount < 0
       "Error: invalid amount"
@@ -12,11 +19,7 @@ class Bank
   end
 
   def deposit(amount)
-    amount
-  end
-
-  def balance
-    1000
+    @balance += amount
   end
 
 end
