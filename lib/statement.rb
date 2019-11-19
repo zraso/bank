@@ -6,4 +6,15 @@ class Statement
     @transactions = []
   end
 
+  def printer
+    print header
+    puts @transactions.reverse
+  end
+
+  private
+
+  def header
+    puts 'date || credit || debit || balance'
+  end
+
 end

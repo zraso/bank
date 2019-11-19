@@ -35,11 +35,6 @@ class Bank
     @statement.transactions << display_entry
   end
 
-  def print_statement
-    print header
-    puts @statement.transactions.reverse
-  end
-
   private
 
   # this can be broken out into a new class

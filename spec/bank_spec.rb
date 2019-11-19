@@ -91,20 +91,20 @@ describe Bank do
   describe '#print_statement' do
     it 'when one deposit, prints date, amount and balance with header' do
       first_deposit
-      expect { subject.print_statement }.to output("date || credit || debit || balance\n10/01/2012 || 1000.00 || || 1000.00\n").to_stdout
+      expect { subject.statement.printer }.to output("date || credit || debit || balance\n10/01/2012 || 1000.00 || || 1000.00\n").to_stdout
     end
 
     it 'when two deposits, prints statement date, amount and balance' do
       first_deposit
       second_deposit
-      expect { subject.print_statement }.to output("date || credit || debit || balance\n13/01/2012 || 2000.00 || || 3000.00\n10/01/2012 || 1000.00 || || 1000.00\n").to_stdout
+      expect { subject.statement.printer }.to output("date || credit || debit || balance\n13/01/2012 || 2000.00 || || 3000.00\n10/01/2012 || 1000.00 || || 1000.00\n").to_stdout
     end
 
     it 'when deposit and withdrawal, prints statement date, amount and balance' do
       first_deposit
       second_deposit
       withdrawal
-      expect { subject.print_statement }.to output("date || credit || debit || balance\n14/01/2012 || || 500.00 || 2500.00\n13/01/2012 || 2000.00 || || 3000.00\n10/01/2012 || 1000.00 || || 1000.00\n").to_stdout
+      expect { subject.statement.printer }.to output("date || credit || debit || balance\n14/01/2012 || || 500.00 || 2500.00\n13/01/2012 || 2000.00 || || 3000.00\n10/01/2012 || 1000.00 || || 1000.00\n").to_stdout
     end
   end
 end
