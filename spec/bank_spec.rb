@@ -2,10 +2,11 @@ require 'bank'
 require_relative 'test_helpers'
 
 describe Bank do
+
   describe '#money_format' do
     it 'displays a given amount in the correct format' do
       first_deposit
-      expect(subject.entries[0]).to include '1000.00'
+      expect(subject.statement.transactions[0]).to include '1000.00'
     end
   end
 
@@ -71,19 +72,19 @@ describe Bank do
   describe '#display_entry' do
     it 'displays a deposit entry in the correct format' do
       first_deposit
-      expect(subject.entries).to include '10/01/2012 || 1000.00 || || 1000.00'
+      expect(subject.statement.transactions).to include '10/01/2012 || 1000.00 || || 1000.00'
     end
 
     it 'displays a withdraw entry in the correct format' do
       second_deposit
-      expect(subject.entries).to include '13/01/2012 || 2000.00 || || 2000.00'
+      expect(subject.statement.transactions).to include '13/01/2012 || 2000.00 || || 2000.00'
     end
   end
 
   describe '#confirm' do
     it 'saves the deposit and date as an entry' do
       second_deposit
-      expect(subject.entries).to eq ['13/01/2012 || 2000.00 || || 2000.00']
+      expect(subject.statement.transactions).to eq ['13/01/2012 || 2000.00 || || 2000.00']
     end
   end
 

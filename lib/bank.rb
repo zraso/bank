@@ -1,12 +1,13 @@
 class Bank
-  attr_reader :balance, :last_deposit, :last_date, :entries, :last_withdraw
+  attr_reader :balance, :last_deposit, :last_date, :entries, :last_withdraw, :statement
 
-  def initialize
+  def initialize(statement = Statement.new)
     @balance = 0
     @last_deposit = 0
     @last_withdraw = 0
     @last_date = nil
     @entries = []
+    @statement = statement
   end
 
   def deposit(amount)
@@ -32,12 +33,12 @@ class Bank
       @balance -= @last_withdraw
     end
 
-    @entries << display_entry
+    @statement.transactions << display_entry
   end
 
   def print_statement
     print header
-    puts @entries.reverse
+    puts @statement.transactions.reverse
   end
 
   private
