@@ -1,10 +1,11 @@
 class Bank
 
-  attr_reader :balance, :last_deposit, :last_date, :entries
+  attr_reader :balance, :last_deposit, :last_date, :entries, :last_withdraw
 
   def initialize
     @balance = 0
     @last_deposit = 0
+    @last_withdraw = 0
     @last_date = nil
     @entries = []
   end
@@ -23,11 +24,14 @@ class Bank
 
   def deposit(amount)
     @balance += amount
+    @last_withdraw = 0
     @last_deposit = amount
   end
 
   def withdraw(amount)
     @balance -= amount
+    @last_deposit = 0
+    @last_withdraw = amount
   end
 
   def confirm
@@ -35,7 +39,11 @@ class Bank
   end
 
   def display_entry
-    @last_date + " || " + money_format(@last_deposit) + " || " + "|| " + money_format(@balance)
+    if @last_deposit > 0
+      @last_date + " || " + money_format(@last_deposit) + " || " + "|| " + money_format(@balance)
+    else
+      @last_date + " || " + "|| " + money_format(@last_withdraw) + " || " + money_format(@balance)
+    end
   end
 
   def print_statement
