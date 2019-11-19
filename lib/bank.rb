@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Bank
   attr_reader :balance, :last_deposit, :last_date, :entries, :last_withdraw
 
@@ -30,11 +28,11 @@ class Bank
   def confirm
     if @last_deposit.positive?
       @balance += @last_deposit
-      @entries << display_entry
     else
       @balance -= @last_withdraw
-      @entries << display_entry
     end
+
+    @entries << display_entry
   end
 
   def print_statement
@@ -44,27 +42,24 @@ class Bank
 
   private
 
-  def money_format(amount)
-    format('%.2f', amount)
-  end
-
   # this can be broken out into a new class
   def display_entry
     lines = [' || ', '|| ']
-    deposit = money_format(@last_deposit) + lines[0] + lines[1]
-    withdraw = lines[1] + money_format(@last_withdraw) + lines[0]
+    deposit = format('%.2f', @last_deposit) + lines[0] + lines[1]
+    withdraw = lines[1] + format('%.2f', @last_withdraw) + lines[0]
     date = @last_date + lines[0]
 
     if @last_deposit.positive?
-      date + deposit + money_format(@balance)
+      date + deposit + format('%.2f', @balance)
     else
-      date + withdraw + money_format(@balance)
+      date + withdraw + format('%.2f', @balance)
     end
   end
 
   def header
     puts 'date || credit || debit || balance'
   end
+  ###
 
   def raise_error(amount)
     raise 'Error: incorrect format' unless amount.is_a? Integer
