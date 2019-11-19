@@ -10,32 +10,37 @@ class Bank
     @entries = []
   end
 
-  def money_format(amount)
-    if amount < 0
-      "Error: invalid amount"
-    else 
-      sprintf("%.2f", amount)
-    end
-  end
-
-  def add_date(date)
-    @last_date = date.split("-").join("/")
-  end
-
   def deposit(amount)
+    raise_error(amount)
     @balance += amount
     @last_withdraw = 0
     @last_deposit = amount
   end
 
   def withdraw(amount)
+    raise_error(amount)
     @balance -= amount
     @last_deposit = 0
     @last_withdraw = amount
   end
 
+  def add_date(date)
+    @last_date = date.split("-").join("/")
+  end
+
   def confirm
     @entries << display_entry
+  end
+
+  def print_statement
+    print header
+    puts @entries.reverse
+  end
+
+  private
+
+  def money_format(amount)
+    sprintf("%.2f", amount)
   end
 
   #this can be broken out into a new class
@@ -52,15 +57,13 @@ class Bank
     end
   end
 
-  def print_statement
-    print header
-    puts @entries.reverse
-  end
-
-  private
-
   def header
     puts "date || credit || debit || balance"
+  end
+
+  def raise_error(amount)
+    raise "Error: incorrect format" unless amount.is_a? Integer
+    raise "Error: invalid amount" if amount < 0
   end
 
 end
