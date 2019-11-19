@@ -1,12 +1,11 @@
 class Bank
-  attr_reader :balance, :last_deposit, :last_date, :entries, :last_withdraw, :statement
+  attr_reader :balance, :last_deposit, :last_date, :last_withdraw, :statement
 
   def initialize(statement = Statement.new)
     @balance = 0
     @last_deposit = 0
     @last_withdraw = 0
     @last_date = nil
-    @entries = []
     @statement = statement
   end
 
