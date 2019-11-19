@@ -38,11 +38,17 @@ class Bank
     @entries << display_entry
   end
 
+  #this can be broken out into a new class
   def display_entry
+    lines = [" || ", "|| "]
+    deposit = money_format(@last_deposit) + lines[0] + lines[1]
+    withdraw = lines[1] + money_format(@last_withdraw) + lines[0]
+    date = @last_date + lines[0]
+
     if @last_deposit > 0
-      @last_date + " || " + money_format(@last_deposit) + " || " + "|| " + money_format(@balance)
+      date + deposit + money_format(@balance)
     else
-      @last_date + " || " + "|| " + money_format(@last_withdraw) + " || " + money_format(@balance)
+      date + withdraw + money_format(@balance)
     end
   end
 
