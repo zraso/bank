@@ -32,7 +32,7 @@ class Bank
       @balance -= @last_withdraw
     end
 
-    @statement.transactions << display_entry
+    @statement.entries << display_entry
   end
 
   private
@@ -49,10 +49,6 @@ class Bank
     else
       date + withdraw + format('%.2f', @balance)
     end
-  end
-
-  def header
-    puts 'date || credit || debit || balance'
   end
   ###
 

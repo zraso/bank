@@ -1,18 +1,19 @@
 class Statement
 
-  attr_reader :transactions
+  attr_reader :entries
 
   def initialize
-    @transactions = []
+    @entries = []
   end
+
+ 
 
   def printer
     print header
-    puts @transactions.reverse
+    puts @entries.reverse
   end
 
   private
-
   def header
     puts 'date || credit || debit || balance'
   end
