@@ -23,7 +23,11 @@ describe Bank do
     
     it 'it adds to the balance' do
       subject.deposit(1000)
+      subject.add_date("10-01-2012")
+      subject.confirm
       subject.deposit(2000)
+      subject.add_date("13-01-2012")
+      subject.confirm
       expect(subject.balance).to eq 3000
     end
 
@@ -39,8 +43,14 @@ describe Bank do
   describe '#withdraw' do
     it 'when there is an amount and a withdrawal, it returns the difference of the amounts' do
       subject.deposit(1000)
+      subject.add_date("10-01-2012")
+      subject.confirm
       subject.deposit(2000)
+      subject.add_date("13-01-2012")
+      subject.confirm
       subject.withdraw(500)
+      subject.add_date("14-01-2012")
+      subject.confirm
       expect(subject.balance).to eq 2500
     end
 
@@ -129,5 +139,3 @@ describe Bank do
     end
   end
 end
-
-## Edge case: Saves to balance even without confirm

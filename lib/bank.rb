@@ -12,14 +12,12 @@ class Bank
 
   def deposit(amount)
     raise_error(amount)
-    @balance += amount
     @last_withdraw = 0
     @last_deposit = amount
   end
 
   def withdraw(amount)
     raise_error(amount)
-    @balance -= amount
     @last_deposit = 0
     @last_withdraw = amount
   end
@@ -29,7 +27,13 @@ class Bank
   end
 
   def confirm
-    @entries << display_entry
+    if @last_deposit > 0
+      @balance += @last_deposit
+      @entries << display_entry
+    else
+      @balance -= @last_withdraw
+      @entries << display_entry
+    end
   end
 
   def print_statement
