@@ -1,5 +1,6 @@
-class Bank
+# frozen_string_literal: true
 
+class Bank
   attr_reader :balance, :last_deposit, :last_date, :entries, :last_withdraw
 
   def initialize
@@ -23,11 +24,11 @@ class Bank
   end
 
   def add_date(date)
-    @last_date = date.split("-").join("/")
+    @last_date = date.split('-').join('/')
   end
 
   def confirm
-    if @last_deposit > 0
+    if @last_deposit.positive?
       @balance += @last_deposit
       @entries << display_entry
     else
@@ -44,17 +45,17 @@ class Bank
   private
 
   def money_format(amount)
-    sprintf("%.2f", amount)
+    format('%.2f', amount)
   end
 
-  #this can be broken out into a new class
+  # this can be broken out into a new class
   def display_entry
-    lines = [" || ", "|| "]
+    lines = [' || ', '|| ']
     deposit = money_format(@last_deposit) + lines[0] + lines[1]
     withdraw = lines[1] + money_format(@last_withdraw) + lines[0]
     date = @last_date + lines[0]
 
-    if @last_deposit > 0
+    if @last_deposit.positive?
       date + deposit + money_format(@balance)
     else
       date + withdraw + money_format(@balance)
@@ -62,12 +63,11 @@ class Bank
   end
 
   def header
-    puts "date || credit || debit || balance"
+    puts 'date || credit || debit || balance'
   end
 
   def raise_error(amount)
-    raise "Error: incorrect format" unless amount.is_a? Integer
-    raise "Error: invalid amount" if amount < 0
+    raise 'Error: incorrect format' unless amount.is_a? Integer
+    raise 'Error: invalid amount' if amount.negative?
   end
-
 end
