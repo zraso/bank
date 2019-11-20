@@ -25,8 +25,8 @@ class Bank
     @statement.format_date(date)
   end
 
-  def confirm
-    @statement.display_entry(@last_deposit, @balance)
+  def pass_entry_data_to_formatter
+    @statement.check_type_and_add_formatted_entry(@last_deposit, @balance)
   end
 
   private

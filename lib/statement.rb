@@ -1,9 +1,9 @@
 class Statement
 
-  attr_reader :entries, :lines, :deposit, :withdraw, :date
+  attr_reader :transactions, :lines, :deposit, :withdraw, :date
 
   def initialize
-    @entries = []
+    @transactions = []
     @lines = [' || ', '|| ']
     @deposit = ""
     @withdraw = ""
@@ -12,7 +12,7 @@ class Statement
 
   def printer
     print header
-    puts @entries.reverse
+    puts @transactions.reverse
   end
 
   def header
@@ -31,15 +31,15 @@ class Statement
     @withdraw = lines[1] + format('%.2f', amount) + lines[0]
   end
 
-  def display_entry(last_deposit, balance)
+  def check_type_and_add_formatted_entry(last_deposit, balance)
     
     if last_deposit > 0
       entry = date + deposit + format('%.2f', balance)
-      @entries << entry
     else
       entry = date + withdraw + format('%.2f', balance)
-      @entries << entry
     end
+
+    @transactions << entry
     
   end
 
