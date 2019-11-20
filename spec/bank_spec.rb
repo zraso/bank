@@ -10,11 +10,11 @@ describe Bank do
     end
   end
 
-  describe '#add_date' do
-    it 'returns a given date in the correct format' do
-      expect(subject.add_date('10-01-2012')).to eq '10-01-2012'
-    end
-  end
+  # describe '#add_date' do
+  #   it 'returns a given date in the correct format' do
+  #     expect(subject.add_date('10-01-2012')).to eq '10-01-2012'
+  #   end
+  # end
 
   describe '#deposit' do
     it 'returns a given amount' do
@@ -61,13 +61,13 @@ describe Bank do
     end
   end
 
-  describe '#last_date' do
-    it "returns the last entry's date" do
-      first_deposit
-      second_deposit
-      expect(subject.last_date).to eq '13-01-2012'
-    end
-  end
+  # describe '#last_date' do
+  #   it "returns the last entry's date" do
+  #     first_deposit
+  #     second_deposit
+  #     expect(subject.last_date).to eq '13-01-2012'
+  #   end
+  # end
 
   describe '#display_entry' do
     it 'displays a deposit entry in the correct format' do
