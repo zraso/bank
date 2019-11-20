@@ -33,7 +33,7 @@ class Statement
 
   def display_entry(last_deposit, balance)
     
-    if last_deposit.positive?
+    if last_deposit > 0
       entry = date + deposit + format('%.2f', balance)
       @entries << entry
     else

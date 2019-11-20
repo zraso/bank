@@ -4,8 +4,6 @@ class Bank
   def initialize(statement = Statement.new)
     @balance = 0
     @last_deposit = 0
-    @last_withdraw = 0
-    @last_date = ""
     @statement = statement
   end
 
