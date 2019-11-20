@@ -38,14 +38,5 @@ class Statement
   def add_withdrawal_string(balance)
     @transactions << (date + withdraw + format('%.2f', balance))
   end
-
-  def check_type_and_add_formatted_transaction(last_deposit, balance)
-    
-    if last_deposit > 0
-      add_deposit_string(balance)
-    else
-      add_withdrawal_string(balance)
-    end
-  end
-
+  
 end

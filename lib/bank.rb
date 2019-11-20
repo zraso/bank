@@ -1,22 +1,23 @@
 class Bank
-  attr_reader :balance, :last_deposit, :statement
+  attr_reader :balance, :type, :statement
 
   def initialize(statement = Statement.new)
     @balance = 0
-    @last_deposit = 0
+    type = ""
     @statement = statement
   end
 
   def deposit(amount)
     raise_error(amount)
     @last_deposit = amount
+    @type = "deposit"
     @statement.format_deposit(amount)
     @balance += amount
   end
 
   def withdraw(amount)
     raise_error(amount)
-    @last_deposit = 0
+    @type = ""
     @statement.format_withdraw(amount)
     @balance -= amount
   end
@@ -25,8 +26,12 @@ class Bank
     @statement.format_date(date)
   end
 
-  def pass_transaction_data_to_formatter
-    @statement.check_type_and_add_formatted_transaction(@last_deposit, @balance)
+  def check_type
+    if @type == "deposit"
+      @statement.add_deposit_string(balance)
+    else
+      @statement.add_withdrawal_string(balance)
+    end
   end
 
   private

@@ -53,13 +53,13 @@ describe Bank do
     end
   end
 
-  describe '#last_deposit' do
-    it 'returns last deposit made' do
-      first_deposit
-      second_deposit
-      expect(subject.last_deposit).to eq 2000
-    end
-  end
+  # describe '#last_deposit' do
+  #   it 'returns last deposit made' do
+  #     first_deposit
+  #     second_deposit
+  #     expect(subject.last_deposit).to eq 2000
+  #   end
+  # end
 
   # describe '#last_date' do
   #   it "returns the last entry's date" do
