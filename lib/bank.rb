@@ -31,7 +31,7 @@ class Bank
   end
 
   def confirm
-    @statement.display_entry(@last_deposit, @last_withdraw, @last_date, @balance)
+    @statement.display_entry(@last_deposit, @balance)
   end
 
   private

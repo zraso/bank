@@ -31,7 +31,7 @@ class Statement
     @withdraw = lines[1] + format('%.2f', amount) + lines[0]
   end
 
-  def display_entry(last_deposit, last_withdraw, last_date, balance)
+  def display_entry(last_deposit, balance)
     
     if last_deposit.positive?
       entry = date + deposit + format('%.2f', balance)
