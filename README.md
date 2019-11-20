@@ -9,7 +9,7 @@ A command-line app to create a bank account, make deposits and withdrawals, and 
 
 From your command line:
 1. Start IRB with command `irb`
-2. Load app `require './bank'
+2. Load app `require './bank`
 3. Create an account `account = Account.new`
 4. To make a deposit:
 - First, add the date in the correct format e.g. `account.add_date("10-01-2020")`
