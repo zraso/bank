@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class Bank
   attr_reader :balance, :type, :statement
 
   def initialize(statement = Statement.new)
     @balance = 0
-    type = ""
+    @type = ''
     @statement = statement
   end
 
@@ -14,7 +16,7 @@ class Bank
   def deposit(amount)
     raise_errors(amount)
     @balance += amount
-    @type = "deposit"
+    @type = 'deposit'
     @statement.format_deposit(amount)
     add_transaction_to_statement
   end
@@ -22,7 +24,7 @@ class Bank
   def withdraw(amount)
     raise_errors(amount)
     @balance -= amount
-    @type = "withdraw"
+    @type = 'withdraw'
     @statement.format_withdraw(amount)
     add_transaction_to_statement
   end
@@ -30,7 +32,7 @@ class Bank
   private
 
   def add_transaction_to_statement
-    if @type == "deposit"
+    if @type == 'deposit'
       @statement.add_deposit_string(balance)
     else
       @statement.add_withdrawal_string(balance)
@@ -41,5 +43,4 @@ class Bank
     raise 'Error: incorrect format' unless amount.is_a? Integer
     raise 'Error: invalid amount' if amount.negative?
   end
-
 end

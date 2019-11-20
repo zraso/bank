@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def first_deposit
   subject.add_date('10-01-2012')
   subject.deposit(1000)

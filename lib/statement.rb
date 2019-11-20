@@ -1,22 +1,20 @@
-class Statement
+# frozen_string_literal: true
 
+class Statement
   attr_reader :transactions, :lines, :deposit, :withdraw, :date
 
   def initialize
+    @header = 'date || credit || debit || balance'
     @transactions = []
     @lines = [' || ', '|| ']
-    @deposit = ""
-    @withdraw = ""
-    @date = ""
+    @deposit = ''
+    @withdraw = ''
+    @date = ''
   end
 
   def printer
-    print header
+    puts @header
     puts @transactions.reverse
-  end
-
-  def header
-    puts 'date || credit || debit || balance'
   end
 
   def format_date(date)
@@ -38,5 +36,5 @@ class Statement
   def add_withdrawal_string(balance)
     @transactions << (date + withdraw + format('%.2f', balance))
   end
-  
+
 end
