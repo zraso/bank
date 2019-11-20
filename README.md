@@ -1,10 +1,29 @@
-# bank
+# Bank
 
-Requirements
-* You should be able to interact with your code via a REPL like IRB or the JavaScript console. (You don't need to implement a command line interface that takes input from STDIN.)
-* Deposits, withdrawal.
-* Account statement (date, amount, balance) printing.
-* Data can be kept in memory (it doesn't need to be stored to a database or anything).
+## Introduction
+A command-line app to create a bank account, make deposits and withdrawals, and print your statement. It is a solution to [this practice tech test](https://github.com/makersacademy/course/blob/master/individual_challenges/bank_tech_test.md).
+
+## Instructions
+1. Clone this reposotiory
+2. `bundle install` to install dependencies
+
+From your command line:
+1. Start IRB with command `irb`
+2. Load app `require './bank'
+3. Create an account `account = Account.new`
+4. To make a deposit:
+- First, add the date in the correct format e.g. `account.add_date("10-01-2020")`
+- Then, add the amount to deposit e.g. £1000 would be `account.deposit(1000)`
+5. To make a withdrawal:
+- First, add the date in the correct format e.g. `account.add_date("13-05-2020")`
+- Then, add the amount to deposit e.g. £1000 would be `account.deposit(500)`
+6. To print your statement, run `account.statement.printer`
+
+## Run tests
+1. Run `rspec` from command line to check tests. The app has 100% test coverage.
+2. Run `rubocop` from command line to check linter. The app has 13 remaining offences due to disagreements with rubocop!
+
+## Development
 
 # Acceptance criteria
 Given a client makes a deposit of 1000 on 10-01-2012
@@ -17,40 +36,3 @@ date || credit || debit || balance
 14/01/2012 || || 500.00 || 2500.00
 13/01/2012 || 2000.00 || || 3000.00
 10/01/2012 || 1000.00 || || 1000.00
-
-
-# Plan
-
-1000, 10-01-2012 => 10/01/2012 || 1000.00 || || 1000.00
-2000, 13-01-2012 => 13/01/2012 || 2000.00 || || 3000.00
-500, 14-01-2012 => 14/01/2012 || || 500.00 || 2500.00
-
-DEPOSIT DISPLAY
-1000 => 1000.00 *
-2000 => 2000.00 *
--2000 => ERROR: invalid amount (edge) *
-"2000" => ERROR: incorrect format (edge)
-
-DATE DISPLAY
-10-01-2012 => 10/01/2012
-13-01-2012 => 13/01/2012
-13/01/2012 => ERROR: wrong format (edge)
-31/02/2012 => ERROR: date does not exist (edge)
-
-##Eventually, could have a display method that can be used for both i.e. polymorphism
-
-BALANCE
-deposit(1000) => 1000
-
-deposit(1000), deposit(2000) => 3000
-
-deposit(1000), deposit(2000), withdraw(500) => 2500
-
-PRINT_ENTRY
-deposit(1000), add_date("10-01-2012") => 10/01/2012 || 1000.00 || || 1000.00
-
-deposit(2000), add_date("13-01-2012") => 13/01/2012 || 2000.00 || || 3000.00
-
-PRINT_STATEMENT
-deposit(1000, add_date("10-01-2012") => "date || credit || debit || balance
-                                        14/01/2012 || || 500.00 || 2500.00"
