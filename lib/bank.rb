@@ -7,26 +7,29 @@ class Bank
     @statement = statement
   end
 
-  def deposit(amount)
-    raise_error(amount)
-    @last_deposit = amount
-    @type = "deposit"
-    @statement.format_deposit(amount)
-    @balance += amount
-  end
-
-  def withdraw(amount)
-    raise_error(amount)
-    @type = ""
-    @statement.format_withdraw(amount)
-    @balance -= amount
-  end
-
   def add_date(date)
     @statement.format_date(date)
   end
 
-  def check_type
+  def deposit(amount)
+    raise_errors(amount)
+    @balance += amount
+    @type = "deposit"
+    @statement.format_deposit(amount)
+    add_transaction_to_statement
+  end
+
+  def withdraw(amount)
+    raise_errors(amount)
+    @balance -= amount
+    @type = "withdraw"
+    @statement.format_withdraw(amount)
+    add_transaction_to_statement
+  end
+
+  private
+
+  def add_transaction_to_statement
     if @type == "deposit"
       @statement.add_deposit_string(balance)
     else
@@ -34,9 +37,7 @@ class Bank
     end
   end
 
-  private
-
-  def raise_error(amount)
+  def raise_errors(amount)
     raise 'Error: incorrect format' unless amount.is_a? Integer
     raise 'Error: invalid amount' if amount.negative?
   end
