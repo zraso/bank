@@ -13,12 +13,14 @@ class Bank
     raise_error(amount)
     @last_withdraw = 0
     @last_deposit = amount
+    @balance += @last_deposit
   end
 
   def withdraw(amount)
     raise_error(amount)
     @last_deposit = 0
     @last_withdraw = amount
+    @balance -= @last_withdraw
   end
 
   def add_date(date)
@@ -26,31 +28,10 @@ class Bank
   end
 
   def confirm
-    if @last_deposit.positive?
-      @balance += @last_deposit
-    else
-      @balance -= @last_withdraw
-    end
-
-    @statement.entries << display_entry
+    @statement.display_entry(@last_deposit, @last_withdraw, @last_date, @balance)
   end
 
   private
-
-  # this can be broken out into a new class
-  def display_entry
-    lines = [' || ', '|| ']
-    deposit = format('%.2f', @last_deposit) + lines[0] + lines[1]
-    withdraw = lines[1] + format('%.2f', @last_withdraw) + lines[0]
-    date = @last_date + lines[0]
-
-    if @last_deposit.positive?
-      date + deposit + format('%.2f', @balance)
-    else
-      date + withdraw + format('%.2f', @balance)
-    end
-  end
-  ###
 
   def raise_error(amount)
     raise 'Error: incorrect format' unless amount.is_a? Integer
