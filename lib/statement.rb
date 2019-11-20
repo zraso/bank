@@ -31,16 +31,21 @@ class Statement
     @withdraw = lines[1] + format('%.2f', amount) + lines[0]
   end
 
-  def check_type_and_add_formatted_entry(last_deposit, balance)
+  def add_deposit_string(balance)
+    @transactions << (date + deposit + format('%.2f', balance))
+  end
+
+  def add_withdrawal_string(balance)
+    @transactions << (date + withdraw + format('%.2f', balance))
+  end
+
+  def check_type_and_add_formatted_transaction(last_deposit, balance)
     
     if last_deposit > 0
-      entry = date + deposit + format('%.2f', balance)
+      add_deposit_string(balance)
     else
-      entry = date + withdraw + format('%.2f', balance)
+      add_withdrawal_string(balance)
     end
-
-    @transactions << entry
-    
   end
 
 end
