@@ -1,10 +1,13 @@
 class Statement
 
-  attr_reader :entries, :lines
+  attr_reader :entries, :lines, :deposit, :withdraw, :date
 
   def initialize
     @entries = []
     @lines = [' || ', '|| ']
+    @deposit = ""
+    @withdraw = ""
+    @date = ""
   end
 
   def printer
@@ -16,11 +19,20 @@ class Statement
     puts 'date || credit || debit || balance'
   end
 
-  def display_entry(last_deposit, last_withdraw, last_date, balance)
-    deposit = format('%.2f', last_deposit) + @lines[0] + @lines[1]
-    withdraw = lines[1] + format('%.2f', last_withdraw) + lines[0]
-    date = last_date + lines[0]
+  def format_date(date)
+    @date = date.split('-').join('/') + lines[0]
+  end
 
+  def format_deposit(amount)
+    @deposit = format('%.2f', amount) + @lines[0] + @lines[1]
+  end
+
+  def format_withdraw(amount)
+    @withdraw = lines[1] + format('%.2f', amount) + lines[0]
+  end
+
+  def display_entry(last_deposit, last_withdraw, last_date, balance)
+    
     if last_deposit.positive?
       entry = date + deposit + format('%.2f', balance)
       @entries << entry
@@ -28,7 +40,6 @@ class Statement
       entry = date + withdraw + format('%.2f', balance)
       @entries << entry
     end
-
     
   end
 

@@ -13,6 +13,7 @@ class Bank
     raise_error(amount)
     @last_withdraw = 0
     @last_deposit = amount
+    @statement.format_deposit(amount)
     @balance += @last_deposit
   end
 
@@ -20,11 +21,13 @@ class Bank
     raise_error(amount)
     @last_deposit = 0
     @last_withdraw = amount
+    @statement.format_withdraw(amount)
     @balance -= @last_withdraw
   end
 
   def add_date(date)
-    @last_date = date.split('-').join('/')
+    @statement.format_date(date)
+    @last_date = date
   end
 
   def confirm
@@ -37,4 +40,5 @@ class Bank
     raise 'Error: incorrect format' unless amount.is_a? Integer
     raise 'Error: invalid amount' if amount.negative?
   end
+
 end
