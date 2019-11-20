@@ -3,7 +3,7 @@
 ## Introduction
 A command-line app to create a bank account, make deposits and withdrawals, and print your statement. It is a solution to [this practice tech test](https://github.com/makersacademy/course/blob/master/individual_challenges/bank_tech_test.md).
 
-## Instructions
+## How to use
 1. Clone this reposotiory
 2. `bundle install` to install dependencies
 
@@ -21,7 +21,7 @@ From your command line:
 
 ## Run tests
 1. Run `rspec` from command line to check tests. The app has 100% test coverage.
-2. Run `rubocop` from command line to check linter. The app has 13 remaining offences due to disagreements with rubocop!
+2. Run `rubocop` from command line to check linter.
 
 ## Development
 
